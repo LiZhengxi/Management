@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B562271-263F-4FFB-B00C-3C488F754B7A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ManagementForm</RootNamespace>
+    <AssemblyName>ManagementForm</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comon.cs" />
+    <Compile Include="Controller\AuthController.cs" />
+    <Compile Include="Controller\DepartmentController.cs" />
+    <Compile Include="Controller\RegistrerController.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\ManagementDbContext.cs" />
+    <Compile Include="Model\Salary.cs" />
+    <Compile Include="Model\Revenue.cs" />
+    <Compile Include="Model\Altelier.cs" />
+    <Compile Include="Model\Department.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Ui\Registrer\AddNewUserUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Registrer\AddNewUserUI.Designer.cs">
+      <DependentUpon>AddNewUserUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\AuthUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\AuthUI.Designer.cs">
+      <DependentUpon>AuthUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\DatabaseUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\DatabaseUI.Designer.cs">
+      <DependentUpon>DatabaseUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Registrer\RegisterUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Registrer\RegisterUI.Designer.cs">
+      <DependentUpon>RegisterUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\SalaryUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\SalaryUI.Designer.cs">
+      <DependentUpon>SalaryUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\WorkingTimeUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\WorkingTimeUI.Designer.cs">
+      <DependentUpon>WorkingTimeUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\RevenueUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\RevenueUI.Designer.cs">
+      <DependentUpon>RevenueUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\StaticUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\StaticUI.Designer.cs">
+      <DependentUpon>StaticUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\EmployeeUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\EmployeeUI.Designer.cs">
+      <DependentUpon>EmployeeUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\AltelierUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\AltelierUI.Designer.cs">
+      <DependentUpon>AltelierUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\DepartmentUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\DepartmentUI.Designer.cs">
+      <DependentUpon>DepartmentUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\MainUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\MainUI.Designer.cs">
+      <DependentUpon>MainUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Ui\Registrer\AddNewUserUI.resx">
+      <DependentUpon>AddNewUserUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\AuthUI.resx">
+      <DependentUpon>AuthUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\DatabaseUI.resx">
+      <DependentUpon>DatabaseUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\Registrer\RegisterUI.resx">
+      <DependentUpon>RegisterUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\SalaryUI.resx">
+      <DependentUpon>SalaryUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\WorkingTimeUI.resx">
+      <DependentUpon>WorkingTimeUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\RevenueUI.resx">
+      <DependentUpon>RevenueUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\StaticUI.resx">
+      <DependentUpon>StaticUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\EmployeeUI.resx">
+      <DependentUpon>EmployeeUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\AltelierUI.resx">
+      <DependentUpon>AltelierUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\DepartmentUI.resx">
+      <DependentUpon>DepartmentUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\MainUI.resx">
+      <DependentUpon>MainUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\MainUI.zh-CN.resx">
+      <DependentUpon>MainUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
