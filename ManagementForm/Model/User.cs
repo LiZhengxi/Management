@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ManagementForm.Model
 {
-    [Table("UserT")]
+    [Table("User")]
     public class User
     {
         [Key]

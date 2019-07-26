@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,33 @@ namespace ManagementForm.Controller
             return retour;
         }
 
+
+        public int ModifyUser(long id,string username, string password, int authority)
+        {
+            int retour = 0;
+            using (var db = new ManagementDbContext())
+            {
+                var result = (from u in db.Users
+                              where u.Username == username
+                              select u.Id).FirstOrDefault();
+
+                if (result == 0)
+                {
+                   
+                 
+                        var user = db.Users.Find(id);
+                        user.Username = username;
+                        user.Password = password;
+                        user.Authority = authority;
+                        user.UpdateBy = Comon.UserId;
+                        db.Entry(user).State = EntityState.Modified;
+                        db.SaveChanges();
+                        retour = 1;
+                    
+                }
+            }
+            return retour;
+        }
         public List<User> GetAllUser()
         {
             var result = new List<User>();

@@ -17,6 +17,10 @@
         }
        public DbSet<User> Users { get; set; }
 
-
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<ManagementDbContext>(null);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
