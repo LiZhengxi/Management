@@ -55,8 +55,7 @@ namespace ManagementForm.Controller
 
                 if (result == 0)
                 {
-                   
-                 
+
                         var user = db.Users.Find(id);
                         user.Username = username;
                         user.Password = password;

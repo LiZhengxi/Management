@@ -15,8 +15,9 @@
         {
 
         }
-       public DbSet<User> Users { get; set; }
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Altelier> Alteliers { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<ManagementDbContext>(null);

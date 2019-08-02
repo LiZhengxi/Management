@@ -66,6 +66,18 @@
     <Compile Include="Model\Altelier.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Ui\Department_Altelier\AddNewAltelierUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Department_Altelier\AddNewAltelierUI.Designer.cs">
+      <DependentUpon>AddNewAltelierUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Department_Altelier\AddNewDepartmentUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Department_Altelier\AddNewDepartmentUI.Designer.cs">
+      <DependentUpon>AddNewDepartmentUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Registrer\ModifyUserUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,10 +144,10 @@
     <Compile Include="Ui\AltelierUI.Designer.cs">
       <DependentUpon>AltelierUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ui\DepartmentUI.cs">
+    <Compile Include="Ui\Department_Altelier\DepartmentUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ui\DepartmentUI.Designer.cs">
+    <Compile Include="Ui\Department_Altelier\DepartmentUI.Designer.cs">
       <DependentUpon>DepartmentUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Ui\MainUI.cs">
@@ -155,6 +167,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ui\Department_Altelier\AddNewAltelierUI.resx">
+      <DependentUpon>AddNewAltelierUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\Department_Altelier\AddNewDepartmentUI.resx">
+      <DependentUpon>AddNewDepartmentUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ui\Registrer\ModifyUserUI.resx">
       <DependentUpon>ModifyUserUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,7 +206,7 @@
     <EmbeddedResource Include="Ui\AltelierUI.resx">
       <DependentUpon>AltelierUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ui\DepartmentUI.resx">
+    <EmbeddedResource Include="Ui\Department_Altelier\DepartmentUI.resx">
       <DependentUpon>DepartmentUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\MainUI.resx">
