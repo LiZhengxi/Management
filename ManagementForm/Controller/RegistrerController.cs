@@ -49,12 +49,14 @@ namespace ManagementForm.Controller
             int retour = 0;
             using (var db = new ManagementDbContext())
             {
-                var result = (from u in db.Users
-                              where u.Username == username
-                              select u.Id).FirstOrDefault();
-
-                if (result == 0)
+                try
                 {
+                    var result = (from u in db.Users
+                                  where u.Username == username && u.Id !=id
+                                  select u.Id).FirstOrDefault();
+
+                    if (result == 0)
+                    {
 
                         var user = db.Users.Find(id);
                         user.Username = username;
@@ -64,7 +66,12 @@ namespace ManagementForm.Controller
                         db.Entry(user).State = EntityState.Modified;
                         db.SaveChanges();
                         retour = 1;
-                    
+
+                    }
+                }
+                catch( Exception e)
+                {
+                    retour = 0;
                 }
             }
             return retour;
