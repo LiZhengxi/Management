@@ -73,7 +73,7 @@
             // buttonModify
             // 
             this.buttonModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonModify.Location = new System.Drawing.Point(566, 61);
+            this.buttonModify.Location = new System.Drawing.Point(565, 61);
             this.buttonModify.Name = "buttonModify";
             this.buttonModify.Size = new System.Drawing.Size(86, 36);
             this.buttonModify.TabIndex = 1;
@@ -83,7 +83,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.Location = new System.Drawing.Point(485, 61);
+            this.buttonAdd.Location = new System.Drawing.Point(480, 61);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(86, 36);
             this.buttonAdd.TabIndex = 0;

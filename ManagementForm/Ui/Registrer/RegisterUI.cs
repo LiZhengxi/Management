@@ -121,7 +121,7 @@ namespace ManagementForm.Ui
             using (var db = new ManagementDbContext())
             {
                 var result = (from user in db.Users select user).ToList();
-
+            
                 dataGridView.DataSource = result;
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].Visible = false;

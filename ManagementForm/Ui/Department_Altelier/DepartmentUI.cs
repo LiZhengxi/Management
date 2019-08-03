@@ -21,7 +21,9 @@ namespace ManagementForm.Ui
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-        
+            AddNewDepartmentUI addNewDepartmentUI = new AddNewDepartmentUI();
+            addNewDepartmentUI.Owner = this;
+            addNewDepartmentUI.ShowDialog();
         }
 
         private void DepartmentUI_Load(object sender, EventArgs e)

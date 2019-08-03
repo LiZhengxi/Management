@@ -59,6 +59,8 @@ namespace ManagementForm.Ui
                         db.SaveChanges();
 
                         MessageBox.Show("加入成功");
+                        //AddNewDepartmentUI ower = (AddNewDepartmentUI)this.Owner;
+                        //ower.renewAltelierList();
                     }
                     else
                     {
@@ -96,6 +98,8 @@ namespace ManagementForm.Ui
                         db.SaveChanges();
 
                         MessageBox.Show("加入成功");
+                        //AddNewDepartmentUI ower = (AddNewDepartmentUI)this.Owner;
+                        //ower.renewAltelierList();
                     }
                     else
                     {
@@ -115,7 +119,8 @@ namespace ManagementForm.Ui
 
         private void ButtonAddAltelier_Click(object sender, EventArgs e)
         {
-            AddNewAltelierUI addNewAltelierUI = new AddNewAltelierUI(departmentController);
+            bool isNewDepartment = true;
+            AddNewAltelierUI addNewAltelierUI = new AddNewAltelierUI(departmentController, isNewDepartment);
             addNewAltelierUI.Owner = this;
             addNewAltelierUI.ShowDialog();
 

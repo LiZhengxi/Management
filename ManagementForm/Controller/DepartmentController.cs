@@ -25,7 +25,6 @@ namespace ManagementForm.Controller
             }
             if(retour == 1)
             {
-                alteliers.Add(altelier);
             }
             return retour;
         }
@@ -35,6 +34,35 @@ namespace ManagementForm.Controller
             return alteliers;
         }
 
+        public Altelier findAltelier(long Id)
+        {
+            Altelier altelier;
+            using (var db = new ManagementDbContext())
+            {
+               altelier =  db.Alteliers.Find(Id);
+            }
+            return altelier;
+        }
+        
+        public int removeAltelier(long Id)
+        {
+            int retour = 0;
+            using(var db = new ManagementDbContext())
+            {
+                try
+                {
+                    var altelier = db.Alteliers.Find(Id);
+                        db.Alteliers.Remove(altelier);
+                        db.SaveChangesAsync();
+                    retour = 1;
+                }
+                catch( Exception e)
+                {
+                    retour = 0;
+                }
+            }
 
+            return retour;
+        }
     }
 }

@@ -66,6 +66,12 @@
     <Compile Include="Model\Altelier.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Ui\Department_Altelier\ModifyAltelierUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Department_Altelier\ModifyAltelierUI.Designer.cs">
+      <DependentUpon>ModifyAltelierUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Department_Altelier\AddNewAltelierUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ui\Department_Altelier\ModifyAltelierUI.resx">
+      <DependentUpon>ModifyAltelierUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ui\Department_Altelier\AddNewAltelierUI.resx">
       <DependentUpon>AddNewAltelierUI.cs</DependentUpon>
     </EmbeddedResource>
