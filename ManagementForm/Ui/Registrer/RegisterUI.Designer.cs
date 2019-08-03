@@ -37,10 +37,13 @@
             this.buttonModify = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.userTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contextMenuStripRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ModifyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userTBindingSource)).BeginInit();
+            this.contextMenuStripRightClick.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -121,10 +124,37 @@
             this.dataGridView.Size = new System.Drawing.Size(736, 439);
             this.dataGridView.TabIndex = 1;
             this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellDoubleClick);
+            this.dataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView_CellMouseDown);
             // 
-            // userTBindingSource
+            // contextMenuStripRightClick
             // 
-            this.userTBindingSource.DataMember = "UserT";
+            this.contextMenuStripRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ModifyToolStripMenuItem,
+            this.AddToolStripMenuItem,
+            this.DeleteToolStripMenuItem});
+            this.contextMenuStripRightClick.Name = "contextMenuStrip1";
+            this.contextMenuStripRightClick.Size = new System.Drawing.Size(181, 92);
+            // 
+            // ModifyToolStripMenuItem
+            // 
+            this.ModifyToolStripMenuItem.Name = "ModifyToolStripMenuItem";
+            this.ModifyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ModifyToolStripMenuItem.Text = "修改";
+            this.ModifyToolStripMenuItem.Click += new System.EventHandler(this.ModifyToolStripMenuItem_Click);
+            // 
+            // AddToolStripMenuItem
+            // 
+            this.AddToolStripMenuItem.Name = "AddToolStripMenuItem";
+            this.AddToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AddToolStripMenuItem.Text = "添加";
+            this.AddToolStripMenuItem.Click += new System.EventHandler(this.AddToolStripMenuItem_Click);
+            // 
+            // DeleteToolStripMenuItem
+            // 
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DeleteToolStripMenuItem.Text = "删除";
+            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // RegistrerUI
             // 
@@ -143,7 +173,7 @@
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userTBindingSource)).EndInit();
+            this.contextMenuStripRightClick.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -156,13 +186,15 @@
         private System.Windows.Forms.Button buttonModify;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Label label1;
-     
-        private System.Windows.Forms.BindingSource userTBindingSource;
         
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn creatByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn authorityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripRightClick;
+        private System.Windows.Forms.ToolStripMenuItem ModifyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
     }
 }
