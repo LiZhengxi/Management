@@ -38,6 +38,10 @@ END
 
 CREATE TABLE [User](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[createBy] [bigint] NULL,
+	[createOn] [date] NULL,
+	[updateBy] [bigint] NULL, 
+	[updateOn] [date] NULL,  
 	[username] [nchar](10) NOT NULL,
 	[password] [nchar](10) NOT NULL,
 	[authority] [int] NULL,
@@ -112,6 +116,10 @@ ALTER TABLE [dbo].[Employee] CHECK CONSTRAINT [FK_Employee_Altelier]
 
 CREATE TABLE [dbo].[Salary](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[createBy] [bigint] NULL,
+	[createOn] [date] NULL,
+	[updateBy] [bigint] NULL, 
+	[updateOn] [date] NULL,  
 	[year] [int] NOT NULL,
 	[month] [int] NOT NULL,
 	[employee_id] [bigint] NOT NULL,
