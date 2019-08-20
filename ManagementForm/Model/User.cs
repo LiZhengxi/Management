@@ -14,11 +14,10 @@ namespace ManagementForm.Model
         [Key]
         public long Id { get; set; }
 
-        public long? CreatBy { get; set; }
-
-        public DateTime? CreatTime { get; set; }
+        public long? CreateBy { get; set; }
 
         public long? UpdateBy { get; set; }
+
 
         public string Username { get; set; }
 

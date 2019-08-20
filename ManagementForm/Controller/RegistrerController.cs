@@ -24,8 +24,7 @@ namespace ManagementForm.Controller
                 {
                     var user = new User
                     {
-                        CreatBy = Comon.UserId,
-                        CreatTime = DateTime.Now,
+                        CreateBy = Comon.UserId,
                         Username = username,
                         Password = password,
                         //TODO: Change a more solide methode to get the authority

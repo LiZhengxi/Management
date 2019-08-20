@@ -126,10 +126,9 @@ namespace ManagementForm.Ui
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].Visible = false;
                 dataGridView.Columns[2].Visible = false;
-                dataGridView.Columns[3].Visible = false;
-                dataGridView.Columns[5].Visible = false;
-                dataGridView.Columns[4].HeaderText = "用户名";
-                dataGridView.Columns[6].HeaderText = "权限";
+                dataGridView.Columns[4].Visible = false;
+                dataGridView.Columns[3].HeaderText = "用户名";
+                dataGridView.Columns[5].HeaderText = "权限";
             }
         }
         

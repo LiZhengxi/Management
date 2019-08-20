@@ -11,7 +11,7 @@
         //连接字符串。
 
         public ManagementDbContext()
-            : base("name=ManagementDbContext")
+            : base("name=ManagementDbContext") //  Connection string name 
         {
 
         }
