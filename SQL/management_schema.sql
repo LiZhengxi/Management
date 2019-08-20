@@ -54,6 +54,10 @@ CREATE TABLE [User](
 
 CREATE TABLE [Revenue](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[createBy] [bigint] NULL,
+	[createOn] [date] NULL,
+	[updateBy] [bigint] NULL, 
+	[updateOn] [date] NULL,  
 	[year] [int] NOT NULL,
 	[month] [int] NOT NULL,
 	[number] [bigint] NULL,
@@ -64,8 +68,6 @@ CREATE TABLE [Revenue](
 ) ON [PRIMARY]
 
 
-
-
 CREATE TABLE [Department](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
 	[department_name] [nchar](10) NULL,
@@ -74,8 +76,6 @@ CREATE TABLE [Department](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
-
 
 
 CREATE TABLE [dbo].[Altelier](
