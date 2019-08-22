@@ -10,6 +10,6 @@ namespace ManagementForm
     {
         public static int? Authority { get; set; }
         public static long UserId { get; set; }
-      
+        public static int DatabaseStaus { get; set; }
     }
 }

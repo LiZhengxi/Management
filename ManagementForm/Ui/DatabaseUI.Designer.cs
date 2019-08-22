@@ -58,13 +58,13 @@
             this.textBoxConnectionAdress.Location = new System.Drawing.Point(41, 103);
             this.textBoxConnectionAdress.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.textBoxConnectionAdress.Name = "textBoxConnectionAdress";
-            this.textBoxConnectionAdress.Size = new System.Drawing.Size(141, 27);
+            this.textBoxConnectionAdress.Size = new System.Drawing.Size(267, 27);
             this.textBoxConnectionAdress.TabIndex = 1;
             // 
             // buttonTest
             // 
             this.buttonTest.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTest.Location = new System.Drawing.Point(226, 163);
+            this.buttonTest.Location = new System.Drawing.Point(324, 157);
             this.buttonTest.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonTest.Name = "buttonTest";
             this.buttonTest.Size = new System.Drawing.Size(100, 40);
@@ -86,11 +86,12 @@
             // 
             // textBoxConnectionName
             // 
+            this.textBoxConnectionName.Enabled = false;
             this.textBoxConnectionName.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxConnectionName.Location = new System.Drawing.Point(41, 41);
             this.textBoxConnectionName.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.textBoxConnectionName.Name = "textBoxConnectionName";
-            this.textBoxConnectionName.Size = new System.Drawing.Size(141, 27);
+            this.textBoxConnectionName.Size = new System.Drawing.Size(267, 27);
             this.textBoxConnectionName.TabIndex = 4;
             // 
             // buttonSave
@@ -115,6 +116,7 @@
             this.buttonExit.TabIndex = 7;
             this.buttonExit.Text = "退出";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // labelConnectionState
             // 
@@ -133,7 +135,7 @@
             this.textBoxConnectionSecret.Location = new System.Drawing.Point(41, 165);
             this.textBoxConnectionSecret.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.textBoxConnectionSecret.Name = "textBoxConnectionSecret";
-            this.textBoxConnectionSecret.Size = new System.Drawing.Size(141, 27);
+            this.textBoxConnectionSecret.Size = new System.Drawing.Size(267, 27);
             this.textBoxConnectionSecret.TabIndex = 10;
             // 
             // labelConnectionSecret
@@ -150,7 +152,7 @@
             // checkBoxWindowsAuth
             // 
             this.checkBoxWindowsAuth.AutoSize = true;
-            this.checkBoxWindowsAuth.Location = new System.Drawing.Point(225, 108);
+            this.checkBoxWindowsAuth.Location = new System.Drawing.Point(324, 108);
             this.checkBoxWindowsAuth.Name = "checkBoxWindowsAuth";
             this.checkBoxWindowsAuth.Size = new System.Drawing.Size(145, 19);
             this.checkBoxWindowsAuth.TabIndex = 11;

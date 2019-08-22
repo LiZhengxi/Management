@@ -45,16 +45,17 @@ namespace ManagementForm.Ui
                 builder["User ID"] = dataBaseKey; // password login
                 builder["Password"] = dataBaseKey;
             }
-            testAsync(builder.ConnectionString);
+           testConnectionAsync(builder.ConnectionString);
         }
 
-        public async Task testAsync (string connectionString)
+        public async Task testConnectionAsync (string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                   await connection.OpenAsync();
+                    labelConnectionState.Text = databaseStatus + "检测中...";
+                    await connection.OpenAsync();
                     labelConnectionState.Text = databaseStatus + " 成功";
 
                 }
@@ -65,7 +66,6 @@ namespace ManagementForm.Ui
                 }
             }
         }
-
         private void checkBoxWindowsAuth_CheckedChanged(object sender, EventArgs e)
         {
             textBoxConnectionSecret.Enabled = checkBoxWindowsAuth.Checked ? false : true;
@@ -87,6 +87,18 @@ namespace ManagementForm.Ui
                 if (checkBoxWindowsAuth.Checked)
                 {
                     builder["integrated Security"] = true; // windows auth
+                                                           // Create a connection string element.
+                    ConnectionStringSettings csSettings = new ConnectionStringSettings("ManagementDbContext", builder.ConnectionString, "System.Data.SqlClient");
+                    //// Get the connection strings section.
+                    ConnectionStringsSection csSection = config.ConnectionStrings;
+                    // Add the new element.
+                    csSection.ConnectionStrings.Clear();
+                    csSection.ConnectionStrings.Add(csSettings);
+                    // Save the configuration file.
+                    config.Save(ConfigurationSaveMode.Modified);
+                    MessageBox.Show("保存成功");
+                    AuthUI ower = (AuthUI)this.Owner;
+                    ower.loadAsynAsync();
                 }
                 // sql connection mode 
                 else
@@ -95,22 +107,26 @@ namespace ManagementForm.Ui
                     {
                         builder["User ID"] = textBoxConnectionSecret.Text; // password login
                         builder["Password"] = textBoxConnectionSecret.Text;
+                        // Create a connection string element.
+                        ConnectionStringSettings csSettings = new ConnectionStringSettings("ManagementDbContext", builder.ConnectionString, "System.Data.SqlClient");
+                        //// Get the connection strings section.
+                        ConnectionStringsSection csSection = config.ConnectionStrings;
+                        // Add the new element.
+                        csSection.ConnectionStrings.Clear();
+                        csSection.ConnectionStrings.Add(csSettings);
+                        // Save the configuration file.
+                        config.Save(ConfigurationSaveMode.Modified);
+                        MessageBox.Show("保存成功");
+                        AuthUI ower = (AuthUI)this.Owner;
+                        ower.loadAsynAsync();
                     }
                     else
                     {
                         MessageBox.Show("请正确填写数据库资料");
+                      
                     }
                 }
-                // Create a connection string element.
-                ConnectionStringSettings csSettings = new ConnectionStringSettings("ManagementDbContext", builder.ConnectionString, "System.Data.SqlClient");
-                //// Get the connection strings section.
-                ConnectionStringsSection csSection = config.ConnectionStrings;
-                // Add the new element.
-                csSection.ConnectionStrings.Clear();
-                csSection.ConnectionStrings.Add(csSettings);
-                // Save the configuration file.
-                config.Save(ConfigurationSaveMode.Modified);
-                MessageBox.Show("保存成功");
+            
             }
             else
             {
@@ -125,7 +141,6 @@ namespace ManagementForm.Ui
             string connectionProvider = "System.Data.SqlClient";
 
             // Get the application configuration file.
-            
             System.Configuration.Configuration config =
                     ConfigurationManager.OpenExeConfiguration(
                     ConfigurationUserLevel.PerUserRoamingAndLocal);
@@ -155,6 +170,12 @@ namespace ManagementForm.Ui
                 }
             }
             textBoxConnectionName.Text = connectionName;
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+
+            this.Dispose();
         }
     }
 }
