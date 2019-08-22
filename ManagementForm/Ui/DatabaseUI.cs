@@ -34,6 +34,7 @@ namespace ManagementForm.Ui
            
             builder["Initial Catalog"] = "management";
             builder["Connect Timeout"] = "5";
+            builder["App"] = "EntityFramework";
             Console.WriteLine(builder.ConnectionString);
 
             if (checkBoxWindowsAuth.Checked == true)
