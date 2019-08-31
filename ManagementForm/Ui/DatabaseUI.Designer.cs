@@ -178,6 +178,7 @@
             this.Controls.Add(this.labelConnectionString);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "DatabaseUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据库管理";
             this.Load += new System.EventHandler(this.DatabaseUI_Load);
             this.ResumeLayout(false);

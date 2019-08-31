@@ -57,10 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comon.cs" />
+    <Compile Include="Controller\AltelierController.cs" />
     <Compile Include="Controller\AuthController.cs" />
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\DepartmentController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Controller\RegistrerController.cs" />
+    <Compile Include="Controller\SalaryController.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\ManagementDbContext.cs" />
     <Compile Include="Model\Salary.cs" />
@@ -85,6 +88,12 @@
     </Compile>
     <Compile Include="Ui\Department_Altelier\AddNewDepartmentUI.Designer.cs">
       <DependentUpon>AddNewDepartmentUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Ui\Registrer\ModifyUserUI.cs">
       <SubType>Form</SubType>
@@ -183,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\Department_Altelier\AddNewDepartmentUI.resx">
       <DependentUpon>AddNewDepartmentUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ui\Registrer\ModifyUserUI.resx">
       <DependentUpon>ModifyUserUI.cs</DependentUpon>

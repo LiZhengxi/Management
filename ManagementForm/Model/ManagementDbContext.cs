@@ -18,6 +18,10 @@
         public DbSet<User> Users { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Altelier> Alteliers { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
+        public DbSet<Revenue> Revenues { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<ManagementDbContext>(null);

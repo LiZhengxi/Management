@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ManagementForm.Controller;
 using ManagementForm.Model;
+
 
 namespace ManagementForm.Ui
 {
@@ -35,19 +37,24 @@ namespace ManagementForm.Ui
         private void RegistrerUI_Load(object sender, EventArgs e)
         {
 
-            RenewData();
+           // RenewDataAsync();
+            Console.WriteLine("finish");
         }
 
         // Remove user
         private void ButtonModify_Click(object sender, EventArgs e)
         {
-            deleteUser();
+            deleteUserAsync();
         }
 
-        private void ButtonRefresh_Click(object sender, EventArgs e)
+        private void ButtonRefresh_ClickAsync(object sender, EventArgs e)
         {
-            RenewData();
+
+            RenewDataAsync();
+            Console.WriteLine("test");
+
         }
+  
 
         private void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -84,7 +91,7 @@ namespace ManagementForm.Ui
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            deleteUser();
+            deleteUserAsync();
         }
 
         /*
@@ -97,7 +104,7 @@ namespace ManagementForm.Ui
             addNewUserUI.ShowDialog();
         }
 
-        public void deleteUser()
+        public  void deleteUserAsync()
         {
             // Get userId
             int i = dataGridView.CurrentRow.Index;
@@ -111,25 +118,36 @@ namespace ManagementForm.Ui
                     db.Users.Remove(user);
                     db.SaveChangesAsync();
                     MessageBox.Show("删除成功");
-                    RenewData();
+                    RenewDataAsync();
                 }
             }
         }
 
-        public void RenewData()
+        public async Task RenewDataAsync()
         {
+            List<User> result  ;
             using (var db = new ManagementDbContext())
             {
-                var result = (from user in db.Users select user).ToList();
-            
-                dataGridView.DataSource = result;
-                dataGridView.Columns[0].Visible = false;
-                dataGridView.Columns[1].Visible = false;
-                dataGridView.Columns[2].Visible = false;
-                dataGridView.Columns[4].Visible = false;
-                dataGridView.Columns[3].HeaderText = "用户名";
-                dataGridView.Columns[5].HeaderText = "权限";
+                try {
+                    result =  (from user in db.Users select user).ToList();
+                    dataGridView.DataSource = result;
+                    //dataGridView.Columns[0].Visible = false;
+                    //dataGridView.Columns[1].Visible = false;
+                    //dataGridView.Columns[2].Visible = false;
+                    //dataGridView.Columns[4].Visible = false;
+                    //dataGridView.Columns[3].HeaderText = "用户名";
+                    //dataGridView.Columns[5].HeaderText = "权限";
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+
             }
+         
+           
+
         }
         
         public void modifyUser()

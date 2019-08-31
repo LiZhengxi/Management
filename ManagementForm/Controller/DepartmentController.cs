@@ -1,6 +1,7 @@
 ﻿using ManagementForm.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace ManagementForm.Controller
 {
     public class DepartmentController
     {
+        ManagementDbContext db = new ManagementDbContext();
+
         public List<Altelier> alteliers = new List<Altelier>();
 
         public int addAltelier(Altelier altelier)
@@ -62,6 +65,46 @@ namespace ManagementForm.Controller
                 }
             }
 
+            return retour;
+        }
+
+
+        public IQueryable<object> GetAllDepartment(long ?Id, string department_name)
+        {
+            var data = (from d in db.Departments
+                        where (Id==null ||d.Id ==Id)&&(department_name==""||d.department_name==department_name)
+                        select d
+                        );
+            return data;
+        }
+
+        public long AddOrUpdateDepartment(Department department)
+        {
+            long retour = 0;
+            if (department != null)
+            {
+                Department departmentToUpdateOrSave = null;
+                departmentToUpdateOrSave = (department.Id != 0) ? db.Departments.Find(department.Id) : db.Departments.Create();
+                departmentToUpdateOrSave.department_name = department.department_name;
+                db.Entry(departmentToUpdateOrSave).State = (department.Id != 0) ? EntityState.Modified : EntityState.Added;
+                db.SaveChanges();
+                retour = departmentToUpdateOrSave.Id;
+            }
+
+            return retour;
+        }
+
+        public long RemoveDepartment(long departmentId)
+        {
+            long retour = 0;
+            if (departmentId != 0)
+            {
+                var department = db.Departments.Find(departmentId);
+                db.Departments.Remove(department);
+              
+                db.SaveChanges();
+                retour = department.Id;
+            }
             return retour;
         }
     }

@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ManagementForm.Model
 {
-    class Employee
+    [Table("Employee")]
+    public class Employee
     {
+        [Key]
+        public long id { get; set; }
+
+        public long altelier_id { get; set; }
+
+        public string employee_name { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace ManagementForm.Ui
                     {
                         MessageBox.Show("修改成功");
                         RegistrerUI ower = (RegistrerUI)this.Owner;
-                        ower.RenewData();
+                        ower.RenewDataAsync();
                     }
                     else
                     {

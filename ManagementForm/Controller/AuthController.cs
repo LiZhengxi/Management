@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManagementForm.Model;
+using System.Data.Entity;
 namespace ManagementForm.Controller
 {
 
@@ -11,26 +12,69 @@ namespace ManagementForm.Controller
     {
         ManagementDbContext db = new ManagementDbContext();
 
-        public int Login (string username, string password)
+        public IQueryable<object> GetAllUsers( long ?userid, int ?authority , string username)
         {
-            int count;
+            var data = (from u in db.Users
+                        where ((userid==null)||u.Id ==userid) && ((authority==null)||u.Authority == authority)&&((username)==""||u.Username == username)
+                        select new
+                        {
+                            userid = u.Id, 
+                            username = u.Username,
+                            authority = (u.Authority ==0)?"Admin":(u.Authority==1)?"Finance":"Normal User"// TODO: change to chinese
+                        });
+            return data;
+        }
 
-            var result = (
-               from user in db.Users
-               where user.Username == username && user.Password == password
-               select user).ToList();
+        //TODO change to return the userid
+        public int Login(string username, string password)
+        {
+            int count =0;
 
-            if(result is null || result.Count==0)
+            var user = db.Users.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
+
+            if(user != null)
             {
-                count = 0;
+                Comon.UserId = user.Id;
+                Comon.Authority = user.Authority;
+                count = 1;
             }
-            else
-            {
-                Comon.UserId = result[0].Id;
-                Comon.Authority = result[0].Authority;
-                count = result.Count;
-            }
+          
             return count;
+        }
+
+        public long AddOrUpdateUser(User user)
+        {
+            long retour = 0;
+            if (user != null)
+            {
+                User userToCreateOrUpdate = null;
+
+                userToCreateOrUpdate = (user.Id > 0) ? db.Users.Find(user.Id) : db.Users.Create();
+                userToCreateOrUpdate.Username = user.Username;
+                userToCreateOrUpdate.Password = user.Password;
+                userToCreateOrUpdate.Authority = user.Authority;
+
+                db.Entry(userToCreateOrUpdate).State = (user.Id > 0) ? EntityState.Modified : EntityState.Added;
+                db.SaveChanges();//TODO: async
+                retour = userToCreateOrUpdate.Id;
+            }
+         
+            return retour;
+        }
+
+        public long RemoveUser(long userId)
+        {
+            long retour = 0;
+            if (userId>0)
+            {
+                User u = db.Users.Find(userId);
+                db.Users.Remove(u);
+
+                db.SaveChanges();
+                retour = u.Id;
+            }
+            
+            return retour;
         }
     }
 }

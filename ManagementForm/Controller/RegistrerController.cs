@@ -63,6 +63,7 @@ namespace ManagementForm.Controller
                         user.Authority = authority;
                         user.UpdateBy = Comon.UserId;
                         db.Entry(user).State = EntityState.Modified;
+                        //db.SaveChanges();
                         db.SaveChanges();
                         retour = 1;
 
@@ -75,19 +76,15 @@ namespace ManagementForm.Controller
             }
             return retour;
         }
-        public List<User> GetAllUser()
+
+        public async Task<List<User>>  GetAllUser()
         {
-            var result = new List<User>();
 
             using (var db = new ManagementDbContext())
             {
-                 result = (from user in db.Users
-                            select user).ToList();
-
+                 return await (from user in db.Users select user).ToListAsync();
             }
-            return result;
         }
-
     }
     
     

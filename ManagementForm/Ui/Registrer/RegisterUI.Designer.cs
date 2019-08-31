@@ -78,7 +78,7 @@
             this.buttonRefresh.TabIndex = 2;
             this.buttonRefresh.Text = "刷新";
             this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
+            this.buttonRefresh.Click += new System.EventHandler(this.ButtonRefresh_ClickAsync);
             // 
             // buttonModify
             // 
