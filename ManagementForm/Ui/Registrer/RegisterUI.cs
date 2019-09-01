@@ -11,12 +11,14 @@ using System.Windows.Forms;
 using ManagementForm.Controller;
 using ManagementForm.Model;
 
-
 namespace ManagementForm.Ui
 {
     public partial class RegistrerUI : Form
     {
+        AuthController authController = new AuthController();
+
         RegistrerController registrerController = new RegistrerController();
+
         public RegistrerUI()
         {
             InitializeComponent();
@@ -31,14 +33,11 @@ namespace ManagementForm.Ui
         private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             modifyUser();
-
         }
 
         private void RegistrerUI_Load(object sender, EventArgs e)
         {
-
-           // RenewDataAsync();
-            Console.WriteLine("finish");
+           RenewDataAsync();
         }
 
         // Remove user
@@ -49,33 +48,37 @@ namespace ManagementForm.Ui
 
         private void ButtonRefresh_ClickAsync(object sender, EventArgs e)
         {
-
             RenewDataAsync();
-            Console.WriteLine("test");
-
+         
         }
   
-
         private void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                // 若行已是选中状态就不再进行设置
-            if (dataGridView.Rows[e.RowIndex].Selected == false)
-                {
-                    dataGridView.ClearSelection();
-                    dataGridView.Rows[e.RowIndex].Selected = true;
+                try {
+                    // 若行已是选中状态就不再进行设置
+                    if (dataGridView.Rows[e.RowIndex].Selected == false)
+                    {
+                        dataGridView.ClearSelection();
+                        dataGridView.Rows[e.RowIndex].Selected = true;
+                    }
+                    //只选中一行时设置活动单元格
+                    if (dataGridView.SelectedRows.Count == 1)
+                    {
+                        dataGridView.CurrentCell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    }
+                    //弹出操作菜单
+                    long userId = Convert.ToInt64(this.dataGridView.Rows[e.RowIndex].Cells["Id"].Value);
+
+                    contextMenuStripRightClick.Show(MousePosition.X, MousePosition.Y);
                 }
-                //只选中一行时设置活动单元格
-                if (dataGridView.SelectedRows.Count == 1)
+                catch (Exception exception)
                 {
-                    dataGridView.CurrentCell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    Console.WriteLine(exception);
                 }
-                //弹出操作菜单
-               long userId = Convert.ToInt64( this.dataGridView.Rows[e.RowIndex].Cells["Id"].Value);
-                
-                contextMenuStripRightClick.Show(MousePosition.X, MousePosition.Y);
             }
+           
         }
         
         // Modify user
@@ -99,69 +102,70 @@ namespace ManagementForm.Ui
          */
         public void addUser()
         {
-            AddNewUserUI addNewUserUI = new AddNewUserUI();
+            AddNewUserUI addNewUserUI = new AddNewUserUI(0);
             addNewUserUI.Owner = this;
             addNewUserUI.ShowDialog();
         }
 
-        public  void deleteUserAsync()
+        public void modifyUser()
+        {
+            int i = dataGridView.CurrentRow.Index;
+            long index = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
+            if (index >0)
+            {
+                AddNewUserUI addNewUserUI = new AddNewUserUI(index);
+                addNewUserUI.Owner = this;
+                addNewUserUI.ShowDialog();
+            }
+        }
+
+        public void deleteUserAsync()
         {
             // Get userId
             int i = dataGridView.CurrentRow.Index;
-            long index = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
-            using (var db = new ManagementDbContext())
+            long userId = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
+            if (userId > 0)
             {
-                var user = db.Users.Find(index);
-                string warningMessage = "是否确认删除用户" + user.Username;
-                if (MessageBox.Show(warningMessage, "警告", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) == DialogResult.Yes)
+                string warningMessage = "是否确认删除用户 " + dataGridView.Rows[i].Cells[1].Value;
+                if (MessageBox.Show(warningMessage, "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    db.Users.Remove(user);
-                    db.SaveChangesAsync();
-                    MessageBox.Show("删除成功");
-                    RenewDataAsync();
+                    if (authController.RemoveUser(userId) > 0)
+                    {
+                        MessageBox.Show("删除成功");
+                        RenewDataAsync();
+                    }
+                    else
+                    {
+                        MessageBox.Show("无法删除用户");
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("无法删除用户");
             }
         }
 
         public async Task RenewDataAsync()
         {
-            List<User> result  ;
-            using (var db = new ManagementDbContext())
-            {
                 try {
-                    result =  (from user in db.Users select user).ToList();
-                    dataGridView.DataSource = result;
-                    //dataGridView.Columns[0].Visible = false;
-                    //dataGridView.Columns[1].Visible = false;
-                    //dataGridView.Columns[2].Visible = false;
-                    //dataGridView.Columns[4].Visible = false;
-                    //dataGridView.Columns[3].HeaderText = "用户名";
-                    //dataGridView.Columns[5].HeaderText = "权限";
+                    var result = authController.GetAllUsers(null,null,"").ToList();
+                    if (result.Count() > 0)
+                    {
+                        dataGridView.DataSource = result;
+                        dataGridView.Columns[0].Visible = false;
 
-                }
+                        dataGridView.Columns[1].HeaderText = "用户名";
+                        dataGridView.Columns[2].HeaderText = "权限";
+                    }
+                    }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
 
-            }
-         
-           
-
         }
         
-        public void modifyUser()
-        {
-            int i = dataGridView.CurrentRow.Index;
-            long index = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
-            using (var db = new ManagementDbContext())
-            {
-                var user = db.Users.Find(index);
-                ModifyUserUI modifyUserUI = new ModifyUserUI(user.Id, user.Username, user.Password, user.Authority ?? 2);
-                modifyUserUI.Owner = this;
-                modifyUserUI.ShowDialog();
-            }
-        }
 
     }
 }

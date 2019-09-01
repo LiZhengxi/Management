@@ -31,7 +31,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            this.buttonModify = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.panelTop.SuspendLayout();
@@ -42,50 +42,56 @@
             // 
             this.panelTop.Controls.Add(this.label1);
             this.panelTop.Controls.Add(this.buttonRefresh);
-            this.panelTop.Controls.Add(this.buttonModify);
+            this.panelTop.Controls.Add(this.buttonRemove);
             this.panelTop.Controls.Add(this.buttonAdd);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(736, 100);
+            this.panelTop.Size = new System.Drawing.Size(981, 115);
             this.panelTop.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 11);
+            this.label1.Location = new System.Drawing.Point(27, 13);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Revenue";
             // 
             // buttonRefresh
             // 
             this.buttonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRefresh.Location = new System.Drawing.Point(650, 61);
+            this.buttonRefresh.Location = new System.Drawing.Point(867, 70);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(0);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(86, 36);
+            this.buttonRefresh.Size = new System.Drawing.Size(115, 42);
             this.buttonRefresh.TabIndex = 2;
             this.buttonRefresh.Text = "刷新";
             this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click_1);
             // 
-            // buttonModify
+            // buttonRemove
             // 
-            this.buttonModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonModify.Location = new System.Drawing.Point(566, 61);
-            this.buttonModify.Name = "buttonModify";
-            this.buttonModify.Size = new System.Drawing.Size(86, 36);
-            this.buttonModify.TabIndex = 1;
-            this.buttonModify.Text = "修改";
-            this.buttonModify.UseVisualStyleBackColor = true;
+            this.buttonRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRemove.Location = new System.Drawing.Point(755, 70);
+            this.buttonRemove.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(115, 42);
+            this.buttonRemove.TabIndex = 1;
+            this.buttonRemove.Text = "删除";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // buttonAdd
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.Location = new System.Drawing.Point(485, 61);
+            this.buttonAdd.Location = new System.Drawing.Point(647, 70);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(86, 36);
+            this.buttonAdd.Size = new System.Drawing.Size(115, 42);
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "添加";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -94,25 +100,27 @@
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 100);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(0, 3, 10, 3);
+            this.dataGridView.Location = new System.Drawing.Point(0, 115);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(0, 3, 13, 3);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(736, 439);
+            this.dataGridView.Size = new System.Drawing.Size(981, 507);
             this.dataGridView.TabIndex = 1;
             // 
             // RevenueUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 539);
+            this.ClientSize = new System.Drawing.Size(988, 622);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.panelTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "RevenueUI";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "DepartmentUI";
+            this.Load += new System.EventHandler(this.RevenueUI_Load);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -125,7 +133,7 @@
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonRefresh;
-        private System.Windows.Forms.Button buttonModify;
+        private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Label label1;
     }

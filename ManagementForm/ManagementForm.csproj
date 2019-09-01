@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Comon.cs" />
     <Compile Include="Controller\AltelierController.cs" />
+    <Compile Include="Controller\RevenueController.cs" />
     <Compile Include="Controller\AuthController.cs" />
     <Compile Include="Controller\DatabaseController.cs" />
     <Compile Include="Controller\DepartmentController.cs" />

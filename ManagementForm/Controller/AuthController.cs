@@ -15,12 +15,12 @@ namespace ManagementForm.Controller
         public IQueryable<object> GetAllUsers( long ?userid, int ?authority , string username)
         {
             var data = (from u in db.Users
-                        where ((userid==null)||u.Id ==userid) && ((authority==null)||u.Authority == authority)&&((username)==""||u.Username == username)
+                        where ((userid == null) || u.Id == userid) && ((authority == null) || u.Authority == authority) && ((username) == "" || u.Username == username)
                         select new
                         {
-                            userid = u.Id, 
+                            Id = u.Id,
                             username = u.Username,
-                            authority = (u.Authority ==0)?"Admin":(u.Authority==1)?"Finance":"Normal User"// TODO: change to chinese
+                            authority = (u.Authority == 0) ? "管理员" : (u.Authority == 1) ? "财务" : "文员"
                         });
             return data;
         }
@@ -50,6 +50,10 @@ namespace ManagementForm.Controller
                 User userToCreateOrUpdate = null;
 
                 userToCreateOrUpdate = (user.Id > 0) ? db.Users.Find(user.Id) : db.Users.Create();
+                if (db.Users.Where(p => p.Username == user.Username).FirstOrDefault()!=null&&user.Id==0)
+                {
+                    return 0;
+                }
                 userToCreateOrUpdate.Username = user.Username;
                 userToCreateOrUpdate.Password = user.Password;
                 userToCreateOrUpdate.Authority = user.Authority;
@@ -75,6 +79,17 @@ namespace ManagementForm.Controller
             }
             
             return retour;
+        }
+
+        public User GetUserById(long userId)
+        {
+            User user = null;
+            user = db.Users.Find(userId);
+            if (user != null)
+            {
+                return user;
+            }
+            return user;
         }
     }
 }

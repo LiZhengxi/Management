@@ -15,10 +15,13 @@ namespace ManagementForm.Ui
 {
     public partial class AddNewUserUI : Form
     {
-        
-        public AddNewUserUI()
+        AuthController authController = new AuthController();
+        long userId;
+  
+        public AddNewUserUI(long userId)
         {
             InitializeComponent();
+            this.userId = userId;
         }
 
         private void ButtonReturn_Click(object sender, EventArgs e)
@@ -28,11 +31,11 @@ namespace ManagementForm.Ui
 
         private void ButtonRegistrer_Click(object sender, EventArgs e)
         {
-            RegistrerController registrerController = new RegistrerController();
+            User user = new User();
             string username = textBoxUsername.Text;
             string password = textBoxPassword.Text;
             int authority = comboBoxAuthority.SelectedIndex;
-            // TODO change the length of username and password when release
+
             if (textBoxUsername.Text.Length<2)
             {
                 MessageBox.Show("账户过短");
@@ -45,29 +48,42 @@ namespace ManagementForm.Ui
                 }
                 else
                 {
+                    user.Id = userId;
+                    user.Username = username;
+                    user.Password = password;
+                    user.Authority = authority;
 
-
-                   if( registrerController.Registrer(username, password, authority) == 1)
+                    if (authController.AddOrUpdateUser(user) > 0)
                     {
-                        MessageBox.Show("加入成功");
+                        string message = "";
+                        message = (userId > 0)?"修改成功" : "添加成功";
+                        MessageBox.Show(message);
                         RegistrerUI ower = (RegistrerUI)this.Owner;
                         ower.RenewDataAsync();
                     }
                     else
                     {
-                        MessageBox.Show("该用户已存在");
+                        MessageBox.Show("加入失败，数据库内可能已存在相同的用户名");
                     }
-                    
                     }
                 }
-            
-
         }
 
         private void AddNewUserUI_Load(object sender, EventArgs e)
         {   // Set the defaut combobox select item
-            comboBoxAuthority.SelectedIndex = 0;
-
+             comboBoxAuthority.SelectedIndex = 0;
+            if (userId >0 )
+            {
+                buttonRegistrer.Text = "注册";
+                User user = authController.GetUserById(userId);
+                if(user != null)
+                {
+                    textBoxUsername.Text = user.Username.Trim();
+                    textBoxPassword.Text = user.Password.Trim();
+                    comboBoxAuthority.SelectedIndex = user.Authority.HasValue ? user.Authority.Value : 0;
+                    buttonRegistrer.Text = "修改";
+                }
+            }
         }
     }
 }

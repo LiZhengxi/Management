@@ -18,6 +18,6 @@ namespace ManagementForm.Model
 
         public int month { get; set; }
 
-        public float number { get; set; }
+        public long number { get; set; }
     }
 }

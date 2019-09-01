@@ -125,6 +125,7 @@ namespace ManagementForm.Ui
             workingTimeUI.Hide();
             salaryUI.Hide();
             staticUI.Hide();
+            registrerUI.Hide();
         }
 
         private void MainUI_Load(object sender, EventArgs e)
@@ -140,7 +141,7 @@ namespace ManagementForm.Ui
 
         private void MainUI_Shown(object sender, EventArgs e)
         {
-            toolStripStatusLabelUserLevel.Text ="当前权限: " + Convert.ToString(Comon.Authority);
+            toolStripStatusLabelUserLevel.Text ="当前权限: " + Comon.GetAuthority(Comon.Authority);
             // 封闭没有权限进入的功能
             switch (Comon.Authority)
             {
