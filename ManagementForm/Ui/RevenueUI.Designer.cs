@@ -95,6 +95,7 @@
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "添加";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // dataGridView
             // 

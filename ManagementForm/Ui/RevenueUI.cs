@@ -36,6 +36,12 @@ namespace ManagementForm.Ui
             RenewDataAsync();
         }
 
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /*
          * Function zone 
          */
@@ -90,7 +96,7 @@ namespace ManagementForm.Ui
             }
         }
 
-        public void addUser()
+        public void addRevenue()
         {
             AddNewUserUI addNewUserUI = new AddNewUserUI(0);
             addNewUserUI.Owner = this;
@@ -109,6 +115,5 @@ namespace ManagementForm.Ui
             }
         }
 
-  
     }
 }
