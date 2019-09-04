@@ -16,7 +16,13 @@ namespace ManagementForm.Controller
         {
             var data = (from r in db.Revenues
                         where ((year == null) || r.year == year) && ((month == null) || r.month == month)&&((id==null)||r.id==id)
-                        select r);
+                        select new
+                        {
+                            r.id,
+                            r.year,
+                            r.month,
+                            r.number
+                        });
             return data;
         }
 

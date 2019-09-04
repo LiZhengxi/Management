@@ -17,7 +17,7 @@ namespace ManagementForm.Ui
     {
         AuthController authController = new AuthController();
 
-        RegistrerController registrerController = new RegistrerController();
+        //RegistrerController registrerController = new RegistrerController();
 
         public RegistrerUI()
         {
@@ -78,7 +78,6 @@ namespace ManagementForm.Ui
                     Console.WriteLine(exception);
                 }
             }
-           
         }
         
         // Modify user

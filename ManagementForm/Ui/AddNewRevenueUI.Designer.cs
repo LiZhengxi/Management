@@ -69,7 +69,7 @@
             this.buttonRegistrer.Name = "buttonRegistrer";
             this.buttonRegistrer.Size = new System.Drawing.Size(116, 36);
             this.buttonRegistrer.TabIndex = 3;
-            this.buttonRegistrer.Text = "注册";
+            this.buttonRegistrer.Text = "加入";
             this.buttonRegistrer.UseVisualStyleBackColor = true;
             this.buttonRegistrer.Click += new System.EventHandler(this.buttonRegistrer_Click);
             // 

@@ -73,7 +73,11 @@ namespace ManagementForm.Controller
         {
             var data = (from d in db.Departments
                         where (Id==null ||d.Id ==Id)&&(department_name==""||d.department_name==department_name)
-                        select d
+                        select new
+                        {
+                            d.Id,
+                            d.department_name
+                        }
                         );
             return data;
         }

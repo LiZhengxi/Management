@@ -49,6 +49,7 @@ namespace ManagementForm
                 this.label = label;
             }
         }
+
         public static list[] GetMonths()
         {
             list[] months = new list[]
@@ -80,13 +81,12 @@ namespace ManagementForm
             };
             return years;
         }
+
         public  static object GetPropertyValue(object obj,string propertyName)
         {
             //returns value of property Name
             return obj.GetType().GetProperty(propertyName).GetValue(obj, null);
         }
-
-
     }
 
 }

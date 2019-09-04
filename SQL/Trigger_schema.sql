@@ -25,9 +25,14 @@ ON [dbo].[Salary]
 FOR UPDATE     
 AS
 DECLARE @Id BIGINT 
+
+IF (select createOn from deleted)  IS NOT NULL 
+BEGIN
 SELECT @Id =id FROM deleted
 UPDATE [dbo].[Salary]  SET updateOn = GETDATE()
 WHERE id = @Id
+END
+
 GO
 
 -- User insert trigger 
@@ -52,10 +57,13 @@ GO
 
 CREATE TRIGGER TGR_USER_UPDATE   
 ON [dbo].[User]   
-FOR UPDATE     
+AFTER  UPDATE    
 AS
 DECLARE @Id BIGINT 
+IF (select createOn from deleted)  IS NOT NULL 
+BEGIN
 SELECT @Id = id FROM deleted
-UPDATE [dbo].[User]  SET updateOn = GETDATE()
+UPDATE [dbo].[User]  SET updateOn = GETDATE()    
 WHERE id = @Id
+END
 GO
