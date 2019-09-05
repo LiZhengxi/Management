@@ -19,6 +19,5 @@ namespace ManagementForm.Model
 
         public double? alterlier_propotion { get; set; }
 
-        public bool? isWorkshop { get; set; }
     }
 }

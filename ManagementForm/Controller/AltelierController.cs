@@ -12,15 +12,14 @@ namespace ManagementForm.Controller
     {
         ManagementDbContext db = new ManagementDbContext();
 
-        public IQueryable<object> GetAllAltelier(long? Id, long? department_id, bool? isWorkshop)
+        public IQueryable<object> GetAllAltelier(long? Id, long? department_id)
         {
             var data = (from a in db.Alteliers
-                        where ((Id == null) || a.Id == Id) && ((department_id == null) || a.department_id == department_id) && ((isWorkshop) == null || a.isWorkshop == isWorkshop)
+                        where ((Id == null) || a.Id == Id) && ((department_id == null) || a.department_id == department_id)
                         select new
                         {
                             AltelierName = a.alterlier_name,
                             AlterPropotion = a.alterlier_propotion,
-                            IsWorkshop = a.isWorkshop,
                             DepartmentName = (from department in db.Departments
                                               where department.Id == a.department_id
                                               select department.department_name).FirstOrDefault()
@@ -39,7 +38,6 @@ namespace ManagementForm.Controller
                 altelierToUpdateOrSave.alterlier_name = altelier.alterlier_name;
                 altelierToUpdateOrSave.alterlier_propotion = altelier.alterlier_propotion;
                 altelierToUpdateOrSave.department_id = altelier.department_id;
-                altelierToUpdateOrSave.isWorkshop = altelier.isWorkshop;
 
                 db.Entry(altelierToUpdateOrSave).State = (altelier.Id > 0) ? EntityState.Modified : EntityState.Added;
 

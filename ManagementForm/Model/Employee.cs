@@ -17,5 +17,13 @@ namespace ManagementForm.Model
         public long altelier_id { get; set; }
 
         public string employee_name { get; set; }
+
+        public bool ?haveDorm { get; set; }
+
+        public bool ?haveSeniorityPay { get; set; }
+
+        public bool ?havePaySocialSecurity { get; set; }
+
+        public bool ?isTeamLeader { get; set; }
     }
 }

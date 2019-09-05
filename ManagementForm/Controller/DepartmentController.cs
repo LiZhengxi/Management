@@ -76,7 +76,8 @@ namespace ManagementForm.Controller
                         select new
                         {
                             d.Id,
-                            d.department_name
+                            d.department_name,
+                            d.isWorkshop
                         }
                         );
             return data;

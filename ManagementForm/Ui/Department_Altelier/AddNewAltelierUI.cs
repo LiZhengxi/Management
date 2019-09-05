@@ -48,7 +48,7 @@ namespace ManagementForm.Ui
 
                         alterlier_name = altelierName,
                         alterlier_propotion = altelierPropotion,
-                        isWorkshop = true
+                  
                     };
 
                     if (departmentController.addAltelier(altelier) == 1)

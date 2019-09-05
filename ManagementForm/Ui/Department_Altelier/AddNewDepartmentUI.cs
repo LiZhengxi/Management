@@ -52,7 +52,7 @@ namespace ManagementForm.Ui
                         {
                             department_id = department.Id,
                             alterlier_name = department.department_name,
-                            isWorkshop = false
+                       
                         };
                         db.Alteliers.Add(altelier);
 

@@ -16,5 +16,6 @@ namespace ManagementForm.Model
         
        public string department_name { get; set; }
 
+        public bool isWorkshop { get; set; }
     }
 }

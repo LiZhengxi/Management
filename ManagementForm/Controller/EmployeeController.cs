@@ -22,10 +22,14 @@ namespace ManagementForm.Controller
                             Id = e.id,
                             EmployeeName = e.employee_name,
                             AltelierName = a.alterlier_name,
-                            AlterlierIsWorkshop = a.isWorkshop,
+                           // AlterlierIsWorkshop = a.isWorkshop,
                             AltelierPropotion = a.alterlier_propotion,
-                            DepartmentName = d.department_name
-                         }
+                            DepartmentName = d.department_name,
+                            e.haveDorm,
+                            e.haveSeniorityPay,
+                            e.havePaySocialSecurity,
+                            e.isTeamLeader
+                        }
                 );
             return data;
         }
@@ -39,6 +43,10 @@ namespace ManagementForm.Controller
                 employeeToSaveOrUpdate = (employee.id >0 ) ? db.Employees.Find(employee.id) : db.Employees.Create();
                 employeeToSaveOrUpdate.employee_name = employee.employee_name;
                 employeeToSaveOrUpdate.altelier_id = employee.altelier_id;
+                employeeToSaveOrUpdate.haveDorm = employee.haveDorm;
+                employeeToSaveOrUpdate.haveSeniorityPay = employee.haveSeniorityPay;
+                employeeToSaveOrUpdate.havePaySocialSecurity = employee.havePaySocialSecurity;
+                employeeToSaveOrUpdate.isTeamLeader = employee.isTeamLeader;
                 db.Entry(employeeToSaveOrUpdate).State = (employee.id > 0) ? EntityState.Modified : EntityState.Added;
 
                 db.SaveChanges();
