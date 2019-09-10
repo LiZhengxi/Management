@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagementForm.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace ManagementForm
         public static int? Authority { get; set; }
         public static long UserId { get; set; }
         public static int DatabaseStaus { get; set; }
+        public static List<Altelier> AltelierToAdd{get; set;}
 
         public static string GetAuthority(int? Authority)
         {

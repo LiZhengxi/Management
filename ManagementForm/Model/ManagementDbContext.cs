@@ -21,6 +21,7 @@
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<Revenue> Revenues { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<DepartmentAltelier> departmentAlteliers { get; set;}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

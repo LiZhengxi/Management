@@ -13,7 +13,6 @@ namespace ManagementForm.Model
         [Key]
         public long Id { get; set; }
 
-        public long department_id { get; set; }
 
         public string alterlier_name { get; set; }
 

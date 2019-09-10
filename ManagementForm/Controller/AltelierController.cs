@@ -15,13 +15,14 @@ namespace ManagementForm.Controller
         public IQueryable<object> GetAllAltelier(long? Id, long? department_id)
         {
             var data = (from a in db.Alteliers
-                        where ((Id == null) || a.Id == Id) && ((department_id == null) || a.department_id == department_id)
+                        join da in db.departmentAlteliers on a.Id equals da.altelier_id
+                        where ((Id == null) || a.Id == Id) && ((department_id == null) || da.department_id == department_id)
                         select new
                         {
                             AltelierName = a.alterlier_name,
                             AlterPropotion = a.alterlier_propotion,
                             DepartmentName = (from department in db.Departments
-                                              where department.Id == a.department_id
+                                              where department.Id == da.department_id
                                               select department.department_name).FirstOrDefault()
                            
                         });
@@ -37,7 +38,7 @@ namespace ManagementForm.Controller
                 altelierToUpdateOrSave = (altelier.Id > 0) ? db.Alteliers.Find(altelier.Id) : db.Alteliers.Create();
                 altelierToUpdateOrSave.alterlier_name = altelier.alterlier_name;
                 altelierToUpdateOrSave.alterlier_propotion = altelier.alterlier_propotion;
-                altelierToUpdateOrSave.department_id = altelier.department_id;
+               
 
                 db.Entry(altelierToUpdateOrSave).State = (altelier.Id > 0) ? EntityState.Modified : EntityState.Added;
 

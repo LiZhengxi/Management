@@ -15,7 +15,8 @@ namespace ManagementForm.Controller
         {
             var data = (from e in db.Employees
                         join a in db.Alteliers on e.altelier_id equals a.Id
-                        join d in db.Departments on a.department_id equals d.Id
+                        join da in db.departmentAlteliers on a.Id equals da.altelier_id
+                        join d in db.Departments on da.department_id equals d.Id
                         where (departmentId == null || d.Id == departmentId) && (altelierId == null || a.Id == altelierId) && (employeeId == null || e.id == employeeId)
                         select new
                         {

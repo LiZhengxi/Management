@@ -86,16 +86,35 @@ namespace ManagementForm.Controller
             return data;
         }
 
-        public long AddOrUpdateDepartment(Department department)
+        public class AddDepartmentCriteria
+        {
+            public AddDepartmentCriteria(Department department, List<long> altelierIds)
+            {
+                this.department = department;
+                this.altelierIds = altelierIds;
+            }
+            public Department department;
+            public List<long> altelierIds;
+        }
+        public long AddOrUpdateDepartment(AddDepartmentCriteria departmentCirteria)
         {
             long retour = 0;
+            Department department = departmentCirteria.department;
             if (department != null)
             {
+                
                 Department departmentToUpdateOrSave = null;
                 departmentToUpdateOrSave = (department.Id != 0) ? db.Departments.Find(department.Id) : db.Departments.Create();
                 departmentToUpdateOrSave.department_name = department.department_name;
                 departmentToUpdateOrSave.isWorkshop = department.isWorkshop;
                 db.Entry(departmentToUpdateOrSave).State = (department.Id != 0) ? EntityState.Modified : EntityState.Added;
+
+                List<long> altelierIds = departmentCirteria.altelierIds;
+                if (altelierIds.Count() > 0)
+                {
+                    //Add into table derpatment_altelier
+                }
+
                 db.SaveChanges();
                 retour = departmentToUpdateOrSave.Id;
             }

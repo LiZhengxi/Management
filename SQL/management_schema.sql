@@ -24,9 +24,15 @@ ALTER TABLE [Employee] DROP CONSTRAINT [FK_Employee_Altelier]
 DROP TABLE [Employee]
 END
 
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME ='Department_Altelier')
+BEGIN
+ALTER TABLE [Department_Altelier] DROP CONSTRAINT [FK_Department_Altelier_Department]
+ALTER TABLE [Department_Altelier] DROP CONSTRAINT [FK_Department_Altelier_Altelier]
+DROP TABLE [Department_Altelier]
+END
+
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME ='Altelier')
 BEGIN
-ALTER TABLE [Altelier] DROP CONSTRAINT [FK_Altelier_Department]
 DROP TABLE [Altelier]
 END
 
@@ -83,7 +89,6 @@ CREATE TABLE [Department](
 
 CREATE TABLE [dbo].[Altelier](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	[department_id] [bigint] NOT NULL,
 	[alterlier_name] [nchar](10) NOT NULL,
 	[alterlier_propotion] [float] NULL,
  CONSTRAINT [PK_Altelier] PRIMARY KEY CLUSTERED 
@@ -91,12 +96,22 @@ CREATE TABLE [dbo].[Altelier](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-ALTER TABLE [dbo].[Altelier]  WITH CHECK ADD  CONSTRAINT [FK_Altelier_Department] FOREIGN KEY([department_id])
 
+CREATE TABLE [dbo].[Department_Altelier](
+	[id][bigint] IDENTITY(1,1) NOT NULL,
+	[department_id][bigint] NOT NULL,
+	[altelier_id][bigint] NOT NULL,
+	 CONSTRAINT [PK_Department_Altelier] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)ON [PRIMARY] 
+ALTER TABLE [dbo].[Department_Altelier]  WITH CHECK ADD  CONSTRAINT [FK_Department_Altelier_Department] FOREIGN KEY([department_id])
 REFERENCES [dbo].[Department] ([id])
 ON DELETE CASCADE
-
-ALTER TABLE [dbo].[Altelier] CHECK CONSTRAINT [FK_Altelier_Department]
+ALTER TABLE [dbo].[Department_Altelier]  WITH CHECK ADD  CONSTRAINT [FK_Department_Altelier_Altelier] FOREIGN KEY([altelier_id])
+REFERENCES [dbo].[Altelier] ([id])
+ON DELETE CASCADE
 
 
 CREATE TABLE [dbo].[Employee](

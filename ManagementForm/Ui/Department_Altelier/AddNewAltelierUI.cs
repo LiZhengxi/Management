@@ -15,64 +15,53 @@ namespace ManagementForm.Ui
 {
     public partial class AddNewAltelierUI : Form
     {
-        
-        DepartmentController departmentController;
-        bool isNewDepartment;
 
-        public AddNewAltelierUI(DepartmentController departmentController,bool isNewDepartment)
+        DepartmentController departmentController;
+        AltelierController altelierController = new AltelierController();
+
+        public AddNewAltelierUI()
         {
             InitializeComponent();
-      
-            this.departmentController = departmentController;
-            this.isNewDepartment = isNewDepartment;
         }
 
         private void ButtonReturn_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
-
+        
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            
-            if (isNewDepartment)
+            string altelierName = textBoxAltelierName.Text;
+            // Convert % to 0.01
+            double altelierPropotion = Convert.ToDouble(numericUpDownPropotion.Value) * 0.01;
+            Altelier altelier = new Altelier();
+
+            if(altelierName!=""&& altelierPropotion != null)
             {
-                using (var db = new ManagementDbContext())
+                string message = "";
+                altelier.Id = 0;
+                altelier.alterlier_name = altelierName;
+                altelier.alterlier_propotion = altelierPropotion;
+                altelier.Id = altelierController.AddOrUpdateAltelier(altelier);
+                if (altelier.Id > 0)
                 {
-                    string altelierName = textBoxAltelierName.Text;
-                    // Convert % to 0.01
-                    double altelierPropotion = Convert.ToDouble(numericUpDownPropotion.Value) * 0.01;
-
-                    var altelier = new Altelier
-                    {
-
-                        alterlier_name = altelierName,
-                        alterlier_propotion = altelierPropotion,
-                  
-                    };
-
-                    if (departmentController.addAltelier(altelier) == 1)
-                    {
-                        AddNewDepartmentUI ower = (AddNewDepartmentUI)this.Owner;
-                        ower.renewAltelierList();
-                        MessageBox.Show("车间已添加");
-                    }
-                    else
-                    {
-                        MessageBox.Show("车间已存在");
-                    }
-
+                    message = "加入成功";
+                    Comon.AltelierToAdd.Add(altelier);
                 }
+                else
+                {
+                    message = "加入失败";
+                }
+              
             }
-            else
-            {
+         
 
-            }
-          
+
+           
+
+
+
 
         }
     }
-
-      
-    
 }

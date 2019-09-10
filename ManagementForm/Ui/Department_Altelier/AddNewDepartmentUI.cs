@@ -23,6 +23,7 @@ namespace ManagementForm.Ui
         {
             InitializeComponent();
             this.departmentId = departmentId;
+            Comon.AltelierToAdd.Clear();
         }
 
         private void ButtonReturn_Click(object sender, EventArgs e)
@@ -52,16 +53,19 @@ namespace ManagementForm.Ui
         {   // Set the defaut combobox select item
             radioButtonNo.Checked = true;
             var department = (departmentId > 0) ? departmentController.GetAllDepartment(departmentId, "").FirstOrDefault() : null;
-            textBoxDepartmentName.Text = Comon.GetPropertyValue(department, "department_name").ToString().Trim();
-            radioButtonYes.Checked = Comon.GetPropertyValue(department, "isWorkshop").ToString() == "True" ? true : false;
+            if (department != null)
+            {
+                textBoxDepartmentName.Text = Comon.GetPropertyValue(department, "department_name").ToString().Trim();
+                radioButtonYes.Checked = Comon.GetPropertyValue(department, "isWorkshop").ToString() == "True" ? true : false;
+            }
         }
 
         private void ButtonAddAltelier_Click(object sender, EventArgs e)
         {
             bool isNewDepartment = true;
-            AddNewAltelierUI addNewAltelierUI = new AddNewAltelierUI(departmentController, isNewDepartment);
-            addNewAltelierUI.Owner = this;
-            addNewAltelierUI.ShowDialog();
+            //AddNewAltelierUI addNewAltelierUI = new AddNewAltelierUI(departmentController, isNewDepartment);
+            //addNewAltelierUI.Owner = this;
+            //addNewAltelierUI.ShowDialog();
         }
 
         private void RadioButtonYes_CheckedChanged(object sender, EventArgs e)

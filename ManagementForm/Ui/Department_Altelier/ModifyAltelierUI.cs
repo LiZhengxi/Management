@@ -31,37 +31,37 @@ namespace ManagementForm.Ui
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            using (var db = new ManagementDbContext())
-            {
-                DepartmentController departmentController = new DepartmentController();
-                string altelierName = textBoxAltelierName.Text;
-                // Convert % to 0.01
-                double altelierPropotion = Convert.ToDouble(numericUpDownPropotion.Value) * 0.01;
+            //using (var db = new ManagementDbContext())
+            //{
+            //    DepartmentController departmentController = new DepartmentController();
+            //    string altelierName = textBoxAltelierName.Text;
+            //    // Convert % to 0.01
+            //    double altelierPropotion = Convert.ToDouble(numericUpDownPropotion.Value) * 0.01;
 
-                var result = (from a in db.Alteliers
-                              where a.alterlier_name == altelierName && a.Id != Id && a.department_id == (from a1 in db.Alteliers where a1.Id == Id select a1.department_id).FirstOrDefault()
-                              select a.Id).FirstOrDefault();
+            //    var result = (from a in db.Alteliers
+            //                  where a.alterlier_name == altelierName && a.Id != Id && a.department_id == (from a1 in db.Alteliers where a1.Id == Id select a1.department_id).FirstOrDefault()
+            //                  select a.Id).FirstOrDefault();
              
 
-                if (result == 0)
-                {
-                    Altelier altelier = departmentController.findAltelier(Id);
-                    altelier.alterlier_name = altelierName;
-                    altelier.alterlier_propotion = altelierPropotion;
+            //    if (result == 0)
+            //    {
+            //        Altelier altelier = departmentController.findAltelier(Id);
+            //        altelier.alterlier_name = altelierName;
+            //        altelier.alterlier_propotion = altelierPropotion;
 
 
-                    db.Entry(altelier).State = EntityState.Modified;
-                    db.SaveChanges();
-                    MessageBox.Show("车间修改成功");
+            //        db.Entry(altelier).State = EntityState.Modified;
+            //        db.SaveChanges();
+            //        MessageBox.Show("车间修改成功");
 
-                }
+            //    }
 
-                else
-                {
-                    MessageBox.Show("车间已存在,无法修改");
-                }
+            //    else
+            //    {
+            //        MessageBox.Show("车间已存在,无法修改");
+            //    }
 
-            }
+            //}
           
 
         }
