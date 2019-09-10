@@ -18,7 +18,7 @@ namespace ManagementForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Juste for test , for release version: AuthUi
-            Application.Run(new MainUI());
+            Application.Run(new AddNewDepartmentUI(1));
         }
     }
 }

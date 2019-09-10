@@ -23,7 +23,7 @@ namespace ManagementForm.Ui
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            AddNewDepartmentUI addNewDepartmentUI = new AddNewDepartmentUI();
+            AddNewDepartmentUI addNewDepartmentUI = new AddNewDepartmentUI(1);
             addNewDepartmentUI.Owner = this;
             addNewDepartmentUI.ShowDialog();
         }
@@ -92,7 +92,5 @@ namespace ManagementForm.Ui
                 MessageBox.Show("无法删除该部门");
             }
         }
-
-        
     }
 }

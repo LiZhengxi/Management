@@ -12,6 +12,7 @@ namespace ManagementForm.Model
     public class Department
     {
        [Key]
+       [Column("id")]
        public  long Id { get; set; }
         
        public string department_name { get; set; }

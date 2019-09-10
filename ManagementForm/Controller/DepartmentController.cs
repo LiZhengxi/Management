@@ -68,6 +68,9 @@ namespace ManagementForm.Controller
             return retour;
         }
 
+        /*
+         * New function 
+         */
 
         public IQueryable<object> GetAllDepartment(long ?Id, string department_name)
         {
@@ -91,6 +94,7 @@ namespace ManagementForm.Controller
                 Department departmentToUpdateOrSave = null;
                 departmentToUpdateOrSave = (department.Id != 0) ? db.Departments.Find(department.Id) : db.Departments.Create();
                 departmentToUpdateOrSave.department_name = department.department_name;
+                departmentToUpdateOrSave.isWorkshop = department.isWorkshop;
                 db.Entry(departmentToUpdateOrSave).State = (department.Id != 0) ? EntityState.Modified : EntityState.Added;
                 db.SaveChanges();
                 retour = departmentToUpdateOrSave.Id;
