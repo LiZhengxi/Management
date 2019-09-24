@@ -48,8 +48,8 @@ CREATE TABLE [User](
 	[createOn] [datetime] NULL,
 	[updateBy] [bigint] NULL, 
 	[updateOn] [datetime] NULL,  
-	[username] [nchar](10) NOT NULL,
-	[password] [nchar](10) NOT NULL,
+	[username] [nvarchar](50) NOT NULL,
+	[password] [nvarchar](50) NOT NULL,
 	[authority] [int] NULL,
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (

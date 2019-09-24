@@ -44,8 +44,8 @@ namespace ManagementForm.Ui
                     department.department_name = departmentName;
                     department.isWorkshop = isWorkshop;
 
-                    message = (departmentController.AddOrUpdateDepartment(department) > 0) ?  "加入成功" : "加入失败";
-                    MessageBox.Show(message);
+                    //message = (departmentController.AddOrUpdateDepartment(department) > 0) ?  "加入成功" : "加入失败";
+                    //MessageBox.Show(message);
             }
         }
 

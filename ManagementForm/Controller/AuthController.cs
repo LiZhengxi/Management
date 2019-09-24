@@ -29,8 +29,8 @@ namespace ManagementForm.Controller
         public int Login(string username, string password)
         {
             int count =0;
-
-            var user = db.Users.Where(p => p.Username == username && p.Password == password).FirstOrDefault();
+            string pwdEncrypt = Comon.GetEncryptText(password);
+            var user = db.Users.Where(p => p.Username == username && p.Password == pwdEncrypt).FirstOrDefault();
 
             if(user != null)
             {
@@ -55,7 +55,7 @@ namespace ManagementForm.Controller
                     return 0;
                 }
                 userToCreateOrUpdate.Username = user.Username;
-                userToCreateOrUpdate.Password = user.Password;
+                userToCreateOrUpdate.Password = Comon.GetEncryptText(user.Password);
                 userToCreateOrUpdate.Authority = user.Authority;
 
                 db.Entry(userToCreateOrUpdate).State = (user.Id > 0) ? EntityState.Modified : EntityState.Added;

@@ -79,7 +79,7 @@ namespace ManagementForm.Ui
                 if(user != null)
                 {
                     textBoxUsername.Text = user.Username.Trim();
-                    textBoxPassword.Text = user.Password.Trim();
+               
                     comboBoxAuthority.SelectedIndex = user.Authority.HasValue ? user.Authority.Value : 0;
                     buttonRegistrer.Text = "修改";
                 }

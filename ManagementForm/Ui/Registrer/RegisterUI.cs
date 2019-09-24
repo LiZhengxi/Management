@@ -4,12 +4,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ManagementForm.Controller;
 using ManagementForm.Model;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 
 namespace ManagementForm.Ui
 {
@@ -37,7 +40,7 @@ namespace ManagementForm.Ui
 
         private void RegistrerUI_Load(object sender, EventArgs e)
         {
-           RenewDataAsync();
+            RenewDataAsync();
         }
 
         // Remove user
@@ -49,14 +52,15 @@ namespace ManagementForm.Ui
         private void ButtonRefresh_ClickAsync(object sender, EventArgs e)
         {
             RenewDataAsync();
-         
+
         }
-  
+
         private void DataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                try {
+                try
+                {
                     // 若行已是选中状态就不再进行设置
                     if (dataGridView.Rows[e.RowIndex].Selected == false)
                     {
@@ -79,7 +83,7 @@ namespace ManagementForm.Ui
                 }
             }
         }
-        
+
         // Modify user
         private void ModifyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -110,7 +114,7 @@ namespace ManagementForm.Ui
         {
             int i = dataGridView.CurrentRow.Index;
             long index = Convert.ToInt32(dataGridView.Rows[i].Cells[0].Value);
-            if (index >0)
+            if (index > 0)
             {
                 AddNewUserUI addNewUserUI = new AddNewUserUI(index);
                 addNewUserUI.Owner = this;
@@ -147,24 +151,30 @@ namespace ManagementForm.Ui
 
         public async Task RenewDataAsync()
         {
-                try {
-                    var result = authController.GetAllUsers(null,null,"").ToList();
-                    if (result.Count() > 0)
-                    {
-                        dataGridView.DataSource = result;
-                        dataGridView.Columns[0].Visible = false;
-
-                        dataGridView.Columns[1].HeaderText = "用户名";
-                        dataGridView.Columns[2].HeaderText = "权限";
-                    }
-                    }
-                catch (Exception ex)
+            try
+            {
+                var result = authController.GetAllUsers(null, null, "").ToList();
+                if (result.Count() > 0)
                 {
-                    Console.WriteLine(ex);
+                    dataGridView.DataSource = result;
+                    dataGridView.Columns[0].Visible = false;
+
+                    dataGridView.Columns[1].HeaderText = "用户名";
+                    dataGridView.Columns[2].HeaderText = "权限";
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
         }
-        
 
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = Comon.GetDataTableFromDataGrid(dataGridView);
+            Comon.ExportExcel(dataTable);
+        }
+        
     }
 }
