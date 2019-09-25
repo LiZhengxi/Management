@@ -172,8 +172,23 @@ namespace ManagementForm.Ui
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = Comon.GetDataTableFromDataGrid(dataGridView);
-            Comon.ExportExcel(dataTable);
+            SaveFileDialog saveFile = ExportOperation.saveFileDialogSetting("请选择要保存的文件路径", "Excel(*.xls) |*.xls", "用户表", saveFileDialog);
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                //获得保存文件的路径
+                string filePath = saveFile.FileName;
+                // Define the title name 
+                List<string> titleList = new List<string>(new string[] { "用户名", "权限" });
+                // Define the coloum to save 
+                List<int> numList = new List<int>() { 1,2 };
+                ExportOperation.ExportExcel(filePath, dataGridView, titleList, numList);
+             
+                // 打开生成的excel
+               if( MessageBox.Show("是否打开导出的文件","", MessageBoxButtons.YesNo)==DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(filePath);
+                }
+            }
         }
         
     }
